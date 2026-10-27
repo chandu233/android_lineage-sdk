@@ -220,7 +220,8 @@ public class LineageSettingsProvider extends ContentProvider {
 
     // Helper for call() CALL_METHOD_DELETE_* methods
     private Bundle callHelperDelete(int callingUserId, Uri contentUri, String key) {
-        final int rowsDeleted = deleteForUser(callingUserId, contentUri, NAME_SELECTION,
+        final Uri uri = Uri.withAppendedPath(contentUri, key);
+        final int rowsDeleted = deleteForUser(callingUserId, uri, NAME_SELECTION,
                 new String[]{ key });
         final Bundle ret = new Bundle();
         ret.putInt(RESULT_ROWS_DELETED, rowsDeleted);
